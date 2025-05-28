@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - voice-auth
+      - command-recognizer
+
+  voice-auth:
+    build: ./services/voice-auth
+    ports:
+      - "5001:5000"
+
+  command-recognizer:
+    build: ./services/command-recognizer
+    ports:
+      - "5002:5000"
+
+  device-controller:
+    build: ./services/device-controller
+    ports:
+      - "5003:5000"
+
+  user-service:
+    build: ./services/user-service
+    ports:
+      - "5004:5000"
+
+  frontend-app:
+    build: ./frontend-app
+    ports:
+      - "3000:3000"
