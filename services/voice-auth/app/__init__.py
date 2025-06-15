@@ -19,7 +19,6 @@ def createApp():
         homeInfo = json.dumps(homeInfo, indent=4)
         return Response(homeInfo, mimetype='application/json'), 200
     
-    # Blueprintleri kaydet
     registerRoutes(app)
 
     

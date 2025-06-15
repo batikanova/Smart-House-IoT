@@ -8,7 +8,7 @@ def voiceAuthenticateService():
     embeddingRef = getEmbedding(recording.squeeze())
     targetVoices = getVoices()
     result = compareVoice(embeddingRef, targetVoices)
-    return True
+    return result
 
 def takeRefVoiceService():
     try:
@@ -17,7 +17,7 @@ def takeRefVoiceService():
         sd.wait()
         embedding = getEmbedding(recording.squeeze())
         saveVoice(embedding)
-        return embedding
+        return True
     except Exception as e:
         print(f"Error during voice recording: {e}")
         return False

@@ -14,7 +14,7 @@ def compareVoice(embedding, targetVoices):
         for targetVoice in targetVoices:
             if targetVoice is None:
                 continue
-            print(targetVoice)
+
             distance = cosine(embedding, targetVoice)
             print(f"Cosine distance: {distance}")
             if distance < 0.5:  # Threshold for similarity
