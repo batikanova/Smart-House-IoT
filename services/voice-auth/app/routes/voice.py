@@ -10,12 +10,12 @@ def home():
     routesInfo = {
         "routes": [
             {
-                "path": "/voice/auth",
+                "path": "/voice-auth/auth",
                 "method": "POST",
                 "parameters":"There is no parameters",
                 "description": "Voice authentication endpoint"},     
             {
-                "path": "/voice/save",
+                "path": "/voice-auth/save",
                 "method": "POST",
                 "parameters":"There is no parameters",
                 "description": "Voice saving endpoint"}]

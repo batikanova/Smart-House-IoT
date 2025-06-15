@@ -12,7 +12,7 @@ def createApp():
             "message": "Welcome to the Smart House Voice Authentication application!",
             "routes": {
                 "/": "Home route",
-                "/voice": "Voice API route",
+                "/voice-auth": "Voice API route",
                 "/voice/auth": "Voice authentication endpoint"
             }
             }

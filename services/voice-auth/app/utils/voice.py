@@ -5,8 +5,9 @@ from resemblyzer import preprocess_wav, VoiceEncoder
 
 def getEmbedding(audioNp):
     encoder = VoiceEncoder()
-    wav = preprocess_wav(audioNp, sample_rate=16000)
+    wav = preprocess_wav(audioNp)
     embedding = encoder.embed_utterance(wav)
+    
     return embedding
 
 def compareVoice(embedding, targetVoices):
