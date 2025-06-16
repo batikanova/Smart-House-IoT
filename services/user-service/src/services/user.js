@@ -22,9 +22,9 @@ async function loginUser({ username, password }) {
     if (!isValid) {
       throw new Error('Kullanıcı adı veya Parola Yanlış');
     }
-
+    console.log('Kullanıcı doğrulandı:', user.username, user.id, user.email);
     // Token üret
-    const token = await sendJwtToClient({ id: user.id, username: user.username }); 
+    const token = await sendJwtToClient({ email: user.email, username: user.username });
 
     // Geri dönüşte user bilgileri ve token ver
     return { token, user };

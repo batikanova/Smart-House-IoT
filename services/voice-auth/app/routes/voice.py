@@ -23,9 +23,9 @@ def home():
     routesInfo = json.dumps(routesInfo, indent=4)
     return Response(routesInfo, status=200, mimetype='application/json')
 
-@voiceBp.route('/auth', methods=['POST'])
-def voiceAuth():
-    return voiceAuthenticate()
+@voiceBp.route('/verify', methods=['POST'])
+def voiceVerifyRoute():
+    return voiceVerify()
 
 @voiceBp.route('/save', methods=['POST'])
 def voiceSave():

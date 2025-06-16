@@ -1,26 +1,37 @@
 from app.services import *
 from flask import jsonify, request
-from app.schemas.voice import voiceSchema
+from app.schemas.voice import voiceSchema, verifySchema
 
 
-def voiceAuthenticate():
+def voiceVerify():
     try:
+        data = request.get_json()
+        validatedData = verifySchema().load(data)
 
-        result = voiceAuthenticateService()
-        return jsonify({"status": result, "message": "Voice authentication process initiated."}), 200
-    
+        result = voiceVerifyService(validatedData.get("email"))
+        if result:
+            print("Voice verification process initiated successfully.")
+            return jsonify({"status": result, "message": "Voice verification process initiated."}), 200
+        else:
+            print("Voice verification process failed.")
+            return jsonify({"status": result, "message": "Voice verification process failed."}), 400
+
     except Exception as e:
 
-        print(f"Error during voice authentication: {e}")
-        return jsonify({"status": False, "message": "Voice authentication failed due to an error."}), 500
+        print(f"Error during voice verification: {e}")
+        return jsonify({"status": False, "message": "Voice verification failed due to an error."}), 500
 
 def saveRefVoice():
     try:
 
         data = request.get_json()
-        validatedData = voiceSchema.load(data)
-        result = takeRefVoiceService(validatedData.get("userName"), validatedData.get("userMail"))
-        return jsonify({"status": result, "message": "Voice Saving process was successful."}), 200
+        print(data)
+        validatedData = voiceSchema().load(data)
+        result = takeRefVoiceService(validatedData.get("name"), validatedData.get("email"))
+        if result:
+            return jsonify({"status": result, "message": "Voice Saving process was successful."}), 200
+        else:
+            return jsonify({"status": result, "message": "Voice Saving process failed."}), 500
     
     except Exception as e:
 

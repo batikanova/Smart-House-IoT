@@ -10,17 +10,21 @@ def getEmbedding(audioNp):
     
     return embedding
 
-def compareVoice(embedding, targetVoices):
+def compareVoice(embedding, targetVoices, userMail):
     try:
         for targetVoice in targetVoices:
-            if targetVoice is None:
+            if targetVoice[0] is None:
                 continue
 
-            distance = cosine(embedding, targetVoice)
+            distance = cosine(embedding, targetVoice[0])
             print(f"Cosine distance: {distance}")
             if distance < 0.5:  # Threshold for similarity
-                print("Voice match successful.")
-                return True
+                if targetVoice[1] == userMail:
+                    print("Voice match successful.")
+                    return True
+                else:
+                    print("Voice match successful but email does not match.")
+                    return False
             else:
                 print("Voice match failed.")
                 return False
